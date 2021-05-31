@@ -13,26 +13,15 @@ class DrawGraphs:
         y_mem_free = self.log_obj.mem_free
 
         x_values = range(len(self.log_obj.timestamps))
+        plt.plot(x_values, self.log_obj.cpu_used, label="CPU Used%")
+        plt.plot(x_values, self.log_obj.cpu_idle, label="CPU Idle%")
+        plt.plot(x_values, self.log_obj.mem_total, label="Memory Total")
+        plt.plot(x_values, self.log_obj.mem_used, label="Memory Used")
+        plt.plot(x_values, self.log_obj.mem_free, label="Memory Free")
 
-        figure, axis = plt.subplots(2)
+        plt.xlabel("Timestamp")
+        plt.ylabel("CPU% and Mem-Kb")
+        plt.legend()
+        plt.title("Top command output vs timestamp")
 
-        axis[0].plot(x_values, self.log_obj.cpu_used, label="CPU used%")
-        axis[0].plot(x_values, self.log_obj.cpu_idle, label="CPU Idle%")
-        axis[1].plot(x_values, self.log_obj.mem_total, label="Memory Total")
-        axis[1].plot(x_values, self.log_obj.mem_used, label="Memory Used")
-        axis[1].plot(x_values, self.log_obj.mem_free, label="Memory Free")
-
-        axis[0].set_xticks(x_values, self.log_obj.timestamps)
-        axis[0].set_title("CPU% vs Timestamp")
-        axis[0].set(xlabel='Timestamp', ylabel="CPU%")
-
-        axis[1].set_xticks(x_values, self.log_obj.timestamps)
-        axis[1].set_title("Memory vs Timestamp")
-        axis[1].set(xlabel='Timestamp', ylabel="Memory KiB")
-
-        axis[0].legend()
-        axis[1].legend()
-        #figure.suptitle("Top command output vs timestamp")
-
-        plt.tight_layout()
         plt.show()
