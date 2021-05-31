@@ -1,0 +1,4 @@
+# memory threshold %
+memory_threshold: 75
+
+process_list: ['chrome', 'Xorg']
